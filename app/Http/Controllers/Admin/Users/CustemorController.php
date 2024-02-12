@@ -60,16 +60,32 @@ class CustemorController extends Controller
             'address' => 'required',
             'phone' => 'required',
         ]);
-    
-        $user = User::find($id)->update([
-            'name' => $request->name,
-            'email' => $request->email,
-        ]);
-        
-        CustemorData::where('user_id', $id)->update([
-            'address' => $request->address,
-            'phone' => $request->phone,
-        ]);
+
+        $data_id = CustemorData::where('user_id', $id)->first();
+
+        if (!isset($data_id)) {
+            $user = User::find($id)->update([
+                'name' => $request->name,
+                'email' => $request->email,
+            ]);
+
+            CustemorData::create([
+                'user_id' => $id,
+                'address' => $request->address,
+                'phone' => $request->phone,
+            ]);
+        } else {
+            $user = User::find($id)->update([
+                'name' => $request->name,
+                'email' => $request->email,
+            ]);
+
+            CustemorData::where('user_id', $id)->update([
+                'address' => $request->address,
+                'phone' => $request->phone,
+            ]);
+        }
+
 
         return redirect()->route('custemors.index')->with('success','Custemor updated successfully');
     }

@@ -17,11 +17,7 @@ return new class extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->tinyText('address');
-<<<<<<< HEAD
             $table->bigInteger('phone');
-=======
-            $table->integer('phone');
->>>>>>> f5230a190c03d0bbad64a3a01af4bafff271fe00
         });
     }
 

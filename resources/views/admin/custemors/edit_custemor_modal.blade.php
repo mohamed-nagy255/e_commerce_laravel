@@ -28,19 +28,6 @@
                         {{-- Second Row --}}
                         <div class="input-group">
                             <div class="mb-3 col-6">
-                                <label for="exampleInputPassword" class="form-label">Password</label>
-                                <input name="password" type="password" class="form-control" id="exampleInputPassword"
-                                    placeholder="Enter Password">
-                            </div>
-                            <div class="mb-3 col-6">
-                                <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
-                                <input name="confirm-password" type="password" class="form-control"
-                                    id="exampleInputPassword1" placeholder="Confirm Password">
-                            </div>
-                        </div>
-                        {{-- Therd Row --}}
-                        <div class="input-group">
-                            <div class="mb-3 col-6">
                                 <label for="address" class="form-label">Address</label>
                                 <input name="address" type="text" class="form-control" id="address"
                                     placeholder="Enter Custemor Address">

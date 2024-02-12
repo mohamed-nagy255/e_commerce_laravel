@@ -23,10 +23,6 @@ class PermissionSeeder extends Seeder
         
         'custemors',
         'custemor-create',
-<<<<<<< HEAD
-=======
-        'custemor-show',
->>>>>>> f5230a190c03d0bbad64a3a01af4bafff271fe00
         'custemor-edit',
         'custemor-delete',
     ];
