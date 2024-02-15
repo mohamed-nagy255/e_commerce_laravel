@@ -15,15 +15,15 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 d-inline">Users </h1>
+                    <h1 class="m-0 d-inline">Categories </h1>
                     <span>/ {{ $title }}</span>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <div class="breadcrumb float-sm-right">
-                        @can('custemor-create')
+                        @can('admin-create')
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                 data-bs-target="#staticBackdrop">
-                                Add Custemor
+                                Add Category
                                 <i class="fa-solid fa-user-plus"></i>
                             </button>
                         @endcan
@@ -49,42 +49,44 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>NAME</th>
-                                        <th>EMAIL</th>
-                                        <th>ADDRESS</th>
-                                        <th>PHONE</th>
+                                        <th>CATEGORY NAME</th>
+                                        <th>SLUG</th>
+                                        <th>HOME PAGE</th>
+                                        <th>IMAGE</th>
                                         <th>CONTROL</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @php($i = 0)
-                                    @foreach ($custemors as $row)
+                                    @foreach ($categories as $row)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            <td>{{ $row->name }}</td>
-                                            <td>{{ $row->email }}</td>
-                                            <td>{{ optional($row->custemor_data)->address }}</td>
-                                            <td>{{ optional($row->custemor_data)->phone }}</td>
+                                            <td>{{ $row->category_name }}</td>
+                                            <td>{{ $row->slug }}</td>
+                                            <td>
+                                                @if ($row->home_page === 1)
+                                                    <span class="right badge badge-success">show Home Page</span>
+                                                @else
+                                                    <span class="right badge badge-danger">Unshow Home Page</span>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <img src="{{ URL::asset('admin_assets/uploade/categories/' . $row->image) }}"
+                                                    height="60" width="60">
+                                            </td>
                                             <td>
                                                 {{-- edit --}}
-                                                @can('custemor-edit')
-                                                    <button type="button" class="btn btn-success mr-2" data-bs-toggle="modal"
-                                                        data-bs-target="#updateModal" title="edit"
-                                                        data-id="{{ $row->id }}" data-name="{{ $row->name }}"
-                                                        data-email="{{ $row->email }}"
-                                                        data-address="{{ $row->custemor_data->address }}"
-                                                        data-phone="{{ $row->custemor_data->phone }}">
-                                                        <i class="fa-solid fa-pen-to-square"></i>
-                                                    </button>
-                                                @endcan
+                                                <button type="button" class="btn btn-success mr-2" data-bs-toggle="modal"
+                                                    data-bs-target="#updateModal" title="edit"
+                                                    data-id="{{ $row->id }}" data-name="{{ $row->category_name }}"
+                                                    data-home="{{ $row->home_page }}" data-image="{{ $row->image }}">
+                                                    <i class="fa-solid fa-pen-to-square"></i>
+                                                </button>
                                                 {{-- delete --}}
-                                                @can('custemor-delete')
-                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                        data-bs-target="#deleteModal" data-id="{{ $row->id }}"
-                                                        title="delete">
-                                                        <i class="fa-solid fa-trash"></i>
-                                                    </button>
-                                                @endcan
+                                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#deleteModal" data-id="" title="delete">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -103,9 +105,8 @@
     </section>
     <!-- /.content -->
 
-    @include('admin.custemors.create_custemor_modal')
-    @include('admin.custemors.edit_custemor_modal')
-    @include('admin.custemors.delete_custemor_modal')
+    @include('admin.categories.create_category_modal')
+    @include('admin.categories.edit_category_modal')
 
 @endsection
 @section('js')
@@ -133,7 +134,7 @@
                 html: '<ul>@foreach ($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul>',
                 position: 'top-end',
                 showConfirmButton: false,
-                timer: 8000,
+                timer: 5000,
                 toast: true,
                 customClass: {
                     popup: 'swal2-toast',
@@ -163,15 +164,15 @@
             var button = $(event.relatedTarget)
             var id = button.data('id')
             var name = button.data('name')
-            var email = button.data('email')
-            var address = button.data('address')
-            var phone = button.data('phone')
+            var home = button.data('home')
+            var image = button.data('image')
             var modal = $(this)
             modal.find('.modal-body #id').val(id);
             modal.find('.modal-body #name').val(name);
-            modal.find('.modal-body #email').val(email);
-            modal.find('.modal-body #address').val(address);
-            modal.find('.modal-body #phone').val(phone);
+            modal.find('.modal-body #home').val(home);
+            modal.find('.modal-body #image').val(image);
+            modal.find('.modal-body #preview-image').attr('src',
+                '{{ URL::asset('admin_assets/uploade/categories') }}' + '/' + image);
         })
         // {{-- delete modal --}}
         $('#deleteModal').on('show.bs.modal', function(event) {

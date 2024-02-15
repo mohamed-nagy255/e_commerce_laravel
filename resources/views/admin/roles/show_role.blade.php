@@ -79,8 +79,8 @@
                                         <div class="tree-nav__item">
                                             @if (!empty($rolePermissions))
                                                 @foreach ($rolePermissions as $v)
-                                                    <label class="label label-secondary text-dark">
-                                                        {{ $v->name }}\   
+                                                    <label class="label label-secondary text-dark d-flex">
+                                                        {{ $v->name }}
                                                     </label>
                                                 @endforeach
                                             @endif

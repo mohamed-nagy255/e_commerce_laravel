@@ -17,9 +17,7 @@ class IsAdmin
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::user()->role_name == 'CUSTEMOR') {   
-            return redirect()
-                ->route('home.page')
-                ->with('success', 'Hello ' . auth()->user()->name);
+            return redirect()->route('home.page');
         } 
         return $next($request);
     }

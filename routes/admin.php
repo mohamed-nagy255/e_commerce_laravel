@@ -1,12 +1,12 @@
 <?php
 
-use App\Http\Middleware\IsAdmin;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\Users\RoleController;
 use App\Http\Controllers\Admin\Users\AdminController;
 use App\Http\Controllers\Admin\Users\CustemorController;
+use App\Http\Controllers\Admin\Categories\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,11 +19,11 @@ use App\Http\Controllers\Admin\Users\CustemorController;
 |
 */
 
-Route::middleware(['auth', IsAdmin::class, 'verified'])->group(function () {
+Route::middleware(['auth', 'is_admin', 'verified'])->group(function () {
     # Home Page
     Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
 
-    # Users
+    # Users & Permissions
     Route::controller(RoleController::class)->group(function () {
         Route::get('/dashboard/users/roles', 'index')->name('roles.index');
         Route::get('/dashboard/users/roles/create_role', 'create')->name('roles.create');
@@ -44,6 +44,13 @@ Route::middleware(['auth', IsAdmin::class, 'verified'])->group(function () {
         Route::post('/dashboard/users/custemors/create_custemor', 'store')->name('custemor.store');
         Route::patch('/dashboard/users/custemors/update_custemor', 'update')->name('custemor.update');
         Route::delete('/dashboard/users/custemors/destroy_custemor', 'destroy')->name('custemor.destroy');
+    });
+
+    # Categories & Sub Categories
+    Route::controller(CategoryController::class)->group(function () {
+        Route::get('/dashboard/categories/categories_list', 'index')->name('categories.index');
+        Route::post('/dashboard/categories/create_category', 'store')->name('category.store');
+        Route::patch('/dashboard/categories/update_category', 'update')->name('category.update');
     });
 });
 

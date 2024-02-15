@@ -36,7 +36,7 @@
         </li>
 
         <!-- Notifications Dropdown Menu -->
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" dir="rtl">
             <a class="nav-link" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="fa-solid fa-bell"></i>
                 <span class="badge badge-danger navbar-badge">3</span>

@@ -121,6 +121,21 @@
                 }
             });
         @endif
+        @if ($errors->any())
+            Swal.fire({
+                icon: 'error',
+                title: 'Errors!',
+                html: '<ul>@foreach ($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul>',
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 8000,
+                toast: true,
+                customClass: {
+                    popup: 'swal2-toast',
+                    title: 'swal2-toast-title',
+                }
+            });
+        @endif
     </script>
 
     <!-- DataTables  & Plugins -->
