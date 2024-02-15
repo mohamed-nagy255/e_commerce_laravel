@@ -46,11 +46,12 @@ Route::middleware(['auth', 'is_admin', 'verified'])->group(function () {
         Route::delete('/dashboard/users/custemors/destroy_custemor', 'destroy')->name('custemor.destroy');
     });
 
-    # Categories & Sub Categories
+    # Categories & Brands
     Route::controller(CategoryController::class)->group(function () {
         Route::get('/dashboard/categories/categories_list', 'index')->name('categories.index');
         Route::post('/dashboard/categories/create_category', 'store')->name('category.store');
         Route::patch('/dashboard/categories/update_category', 'update')->name('category.update');
+        Route::delete('/dashboard/categories/destroy_category', 'destroy')->name('category.destroy');
     });
 });
 

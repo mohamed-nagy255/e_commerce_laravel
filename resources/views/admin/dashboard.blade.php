@@ -27,75 +27,152 @@
     <section class="content">
         <div class="container-fluid">
             <!-- Info boxes -->
-            @can('users')
-                <div class="row">
-                    <div class="col-12 col-sm-6 col-md-3">
-                        <div class="info-box mb-3">
-                            <span class="info-box-icon bg-info elevation-2"><i class="fas fa-users"></i></span>
+        {{-- 
+            ###########################################
+                Users 
+            ###########################################
+        --}}
+            <div class="row">
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon bg-info elevation-2"><i class="fas fa-users"></i></span>
 
-                            <div class="info-box-content">
-                                <span class="info-box-text">All Users</span>
-                                <span class="info-box-number">{{ number_format($users) }}</span>
-                            </div>
-                            <!-- /.info-box-content -->
+                        <div class="info-box-content">
+                            <span class="info-box-text">All Users</span>
+                            <span class="info-box-number">{{ number_format($users) }}</span>
                         </div>
-                        <!-- /.info-box -->
+                        <!-- /.info-box-content -->
                     </div>
-                    <!-- /.col -->
-                    {{-- Admins --}}
-                    @can('admins')
-                        <div class="col-12 col-sm-6 col-md-3">
-                            <div class="info-box mb-3">
-                                <span class="info-box-icon bg-info elevation-2">
-                                    <i class="fa-solid fa-user-tie"></i>
-                                </span>
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Admins</span>
-                                    <span class="info-box-number">{{ number_format($admins) }}</span>
-                                </div>
-                                <!-- /.info-box-content -->
-                            </div>
-                            <!-- /.info-box -->
-                        </div>
-                        <!-- /.col -->
-                    @endcan
-                    {{-- Custemors --}}
-                    @can('custemors')
-                        <div class="col-12 col-sm-6 col-md-3">
-                            <div class="info-box mb-3">
-                                <span class="info-box-icon bg-info elevation-2">
-                                    <i class="fa-solid fa-user"></i>
-                                </span>
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Custemors</span>
-                                    <span class="info-box-number">{{ number_format($custemors) }}</span>
-                                </div>
-                                <!-- /.info-box-content -->
-                            </div>
-                            <!-- /.info-box -->
-                        </div>
-                        <!-- /.col -->
-                    @endcan
-                    {{-- Roles --}}
-                    @can('roles')
-                        <div class="col-12 col-sm-6 col-md-3">
-                            <div class="info-box mb-3">
-                                <span class="info-box-icon bg-info elevation-2">
-                                    <i class="fa-solid fa-user-gear"></i>
-                                </span>
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Roles</span>
-                                    <span class="info-box-number">{{ number_format($roles) }}</span>
-                                </div>
-                                <!-- /.info-box-content -->
-                            </div>
-                            <!-- /.info-box -->
-                        </div>
-                        <!-- /.col -->
-                    @endcan
+                    <!-- /.info-box -->
                 </div>
-                <!-- /.row -->
-            @endcan
+                <!-- /.col -->
+                {{-- Admins --}}
+
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon bg-info elevation-2">
+                            <i class="fa-solid fa-user-tie"></i>
+                        </span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Admins</span>
+                            <span class="info-box-number">{{ number_format($admins) }}</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+
+                {{-- Custemors --}}
+
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon bg-info elevation-2">
+                            <i class="fa-solid fa-user"></i>
+                        </span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Custemors</span>
+                            <span class="info-box-number">{{ number_format($custemors) }}</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+
+                {{-- Roles --}}
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon bg-info elevation-2">
+                            <i class="fa-solid fa-user-gear"></i>
+                        </span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Roles</span>
+                            <span class="info-box-number">{{ number_format($roles) }}</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+
+            </div>
+            <!-- /.row -->
+        </div>
+        {{-- 
+            ###########################################
+                Categories 
+            ###########################################
+        --}}
+        <div class="container-fluid">
+            <!-- Info boxes -->
+            <div class="row">
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon bg-warning elevation-2">
+                            <i class="fa-solid fa-rectangle-list"></i>
+                        </span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">All Categories</span>
+                            <span class="info-box-number">{{ number_format($categories) }}</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+
+                {{-- Sub_Categories --}}
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon bg-warning elevation-2">
+                            <i class="fa-solid fa-list"></i>
+                        </span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Admins</span>
+                            <span class="info-box-number">{{ number_format($admins) }}</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+
+                {{-- Custemors --}}
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon bg-warning elevation-2">
+                            <i class="fa-solid fa-list-check"></i>
+                        </span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Custemors</span>
+                            <span class="info-box-number">{{ number_format($custemors) }}</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+
+                {{-- Brands --}}
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon bg-warning elevation-2">
+                            <i class="fa-solid fa-brazilian-real-sign"></i>
+                        </span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Roles</span>
+                            <span class="info-box-number">{{ number_format($roles) }}</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
+                <!-- /.col -->
+
+            </div>
+            <!-- /.row -->
         </div>
     </section>
 @endsection

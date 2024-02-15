@@ -12,8 +12,8 @@
                     @method('patch')
                     @csrf
                     <div class="modal-body">
-                        <input type="text" name="id" id="id">
-                        <input type="text" name="image" id="image">
+                        <input type="hidden" name="id" id="id">
+                        <input type="hidden" name="image" id="image">
                         {{-- First Row --}}
                         <div class="input-group">
                             <div class="mb-3 col-12">

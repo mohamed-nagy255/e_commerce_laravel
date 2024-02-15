@@ -9,6 +9,12 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 class PermissionSeeder extends Seeder
 {
     private $permissions = [
+        'categories',
+        'categories-list',
+        'category-create',
+        'category-edit',
+        'category-delete',
+
         'users',
         'roles',
         'role-create',

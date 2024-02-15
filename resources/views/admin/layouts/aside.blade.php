@@ -47,7 +47,7 @@
                     </li>
 
                     {{-- Categories --}}
-                    {{-- @can('users') --}}
+                    @can('categories')
                         <li class="nav-item {{ Request()->is('dashboard/categories*') ? 'menu-open' : '' }}">
                             <a href="#" class="nav-link {{ Request()->is('dashboard/categories*') ? 'active' : '' }}">
                                 <i class=" nav-icon fa-solid fa-layer-group"></i>
@@ -57,7 +57,7 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
-                                {{-- @can('admins') --}}
+                                @can('categories-list')
                                     <li class="nav-item">
                                         <a href="{{ route('categories.index') }}"
                                             class="nav-link {{ Request()->is('dashboard/categories/categories_list') ? 'active' : '' }}">
@@ -65,10 +65,10 @@
                                             <p>Categories List</p>
                                         </a>
                                     </li>
-                                {{-- @endcan --}}
+                                @endcan
                             </ul>
                         </li>
-                    {{-- @endcan --}}
+                    @endcan
 
                     {{-- Users & Custemors Setting --}}
                     @can('users')

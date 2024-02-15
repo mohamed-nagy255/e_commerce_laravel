@@ -20,7 +20,7 @@
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <div class="breadcrumb float-sm-right">
-                        @can('admin-create')
+                        @can('category-create')
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                 data-bs-target="#staticBackdrop">
                                 Add Category
@@ -75,18 +75,24 @@
                                                     height="60" width="60">
                                             </td>
                                             <td>
+
                                                 {{-- edit --}}
-                                                <button type="button" class="btn btn-success mr-2" data-bs-toggle="modal"
-                                                    data-bs-target="#updateModal" title="edit"
-                                                    data-id="{{ $row->id }}" data-name="{{ $row->category_name }}"
-                                                    data-home="{{ $row->home_page }}" data-image="{{ $row->image }}">
-                                                    <i class="fa-solid fa-pen-to-square"></i>
-                                                </button>
+                                                @can('category-edit')
+                                                    <button type="button" class="btn btn-success mr-2" data-bs-toggle="modal"
+                                                        data-bs-target="#updateModal" title="edit"
+                                                        data-id="{{ $row->id }}" data-name="{{ $row->category_name }}"
+                                                        data-home="{{ $row->home_page }}" data-image="{{ $row->image }}">
+                                                        <i class="fa-solid fa-pen-to-square"></i>
+                                                    </button>
+                                                @endcan
                                                 {{-- delete --}}
-                                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                    data-bs-target="#deleteModal" data-id="" title="delete">
-                                                    <i class="fa-solid fa-trash"></i>
-                                                </button>
+                                                @can('category-delete')
+                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                        data-bs-target="#deleteModal" data-id="{{ $row->id }}"
+                                                        data-image="{{ $row->image }}" title="delete">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </button>
+                                                @endcan
                                             </td>
                                         </tr>
                                     @endforeach
@@ -107,6 +113,7 @@
 
     @include('admin.categories.create_category_modal')
     @include('admin.categories.edit_category_modal')
+    @include('admin.categories.delete_category_modal')
 
 @endsection
 @section('js')
@@ -178,8 +185,10 @@
         $('#deleteModal').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget)
             var id = button.data('id')
+            var image = button.data('image')
             var modal = $(this)
             modal.find('.modal-body #id').val(id);
+            modal.find('.modal-body #image').val(image);
         })
     </script>
 @endsection
